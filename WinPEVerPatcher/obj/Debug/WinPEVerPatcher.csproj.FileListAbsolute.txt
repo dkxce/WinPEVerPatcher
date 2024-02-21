@@ -1,0 +1,14 @@
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\WinPEVerPatcher.exe.config
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\WinPEVerPatcher.exe
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\WinPEVerPatcher.pdb
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\AsmResolver.dll
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\AsmResolver.PE.dll
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\AsmResolver.PE.File.dll
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\bin\Debug\AsmResolver.PE.Win32Resources.dll
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.csproj.AssemblyReference.cache
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.csproj.CoreCompileInputs.cache
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.csproj.CopyComplete
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.exe
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.pdb
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.Properties.Resources.resources
+C:\Users\dkxce\source\repos2\WinPEVerPatcher\WinPEVerPatcher\obj\Debug\WinPEVerPatcher.csproj.GenerateResource.cache
