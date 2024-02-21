@@ -17,11 +17,14 @@ using AsmResolver.PE.Win32Resources.Builder;
 using AsmResolver.PE.Win32Resources.Version;
 using AsmResolver.PE;
 using System.Reflection;
+using AsmResolver.PE.DotNet.Metadata;
+using System.Text;
 
 namespace WinPEVerPatcher
 {
     internal class Program
     {
+        private static byte[] NSIS = Encoding.ASCII.GetBytes("Nullsoft.NSIS.exehead");
         private static string cfgFile = "WinPEVerPatcher.xml";
         private static Config cfg = null;
         private static int sleep_error = 2500;
@@ -349,7 +352,25 @@ namespace WinPEVerPatcher
             PEFile file = PEFile.FromFile(fileName);
             IPEImage image = PEImage.FromFile(file);
 
-            if(image.Certificates != null && image.Certificates.Count > 0)
+            // Check NSIS //
+            if (new FileInfo(fileName).Length < 10_485_760)
+            {
+                byte[] fbytes = File.ReadAllBytes(fileName);
+                bool isNsis = SeekData(fbytes, 0, fbytes.Length, NSIS) > 0;
+                fbytes = null;
+                if (isNsis)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    WriteWithLog("CAUTION: {");
+                    WriteWithLog("  Status : {0}", "NSIS Executable Detected");
+                    WriteWithLog("  Message: {0}", "Ensure that you set ``CRCCheck off``");
+                    WriteWithLog("}");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    System.Threading.Thread.Sleep(500);
+                };
+            };
+
+            if (image.Certificates != null && image.Certificates.Count > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.Red;
@@ -363,7 +384,7 @@ namespace WinPEVerPatcher
 
                 Console.Write("Do you with to continue? [Y/N]: ");                
                 if (!Console.ReadLine().Trim().ToLower().StartsWith("y")) throw new Exception("Aborted by user");
-            };
+            };            
 
             // Open version info from the PE's resources:
             VersionInfoResource versionInfo = VersionInfoResource.FromDirectory(image.Resources);
@@ -404,6 +425,17 @@ namespace WinPEVerPatcher
 
             // Write to disk.
             file.Write(fileName);
+        }
+
+        public static int SeekData(byte[] data, int offset, int dataSize, byte[] b2seek)
+        {
+            int b2seekSize = b2seek.Length;
+            int matched = 0;
+            for (int pos = offset; pos < dataSize; pos++)
+                if (data[pos] != b2seek[matched]) matched = 0;
+                else if (++matched == b2seekSize)
+                    return pos + 1 - b2seekSize;
+            return -1;
         }
     }
 }
